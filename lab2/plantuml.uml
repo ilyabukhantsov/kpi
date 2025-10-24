@@ -1,0 +1,36 @@
+@startuml
+left to right direction
+
+actor "Редактор" as Editor
+actor "Користувач" as User
+
+rectangle "Система управління кіберспортивними турнірами" {
+
+  usecase "UC1: Реєстрація турніру" as UC1
+  usecase "UC2: Додавання матчів" as UC2
+  usecase "UC3: Фіксація результатів" as UC3
+  usecase "UC4: Реєстрація команд/складів" as UC4
+  usecase "UC5: Збереження призових" as UC5
+  usecase "UC6: Історія команд" as UC6
+  usecase "UC7: Історія гравців" as UC7
+  usecase "UC8: Статистика турнірів" as UC8
+
+  ' Зв’язки include / extend
+  UC3 --> UC2 : <<include>>
+  UC5 --> UC3 : <<extend>>
+  UC6 --> UC4 : <<include>>
+  UC7 --> UC4 : <<include>>
+  UC8 --> UC3 : <<include>>
+}
+
+Editor --> UC1
+Editor --> UC2
+Editor --> UC3
+Editor --> UC4
+Editor --> UC5
+
+User --> UC6
+User --> UC7
+User --> UC8
+
+@enduml
