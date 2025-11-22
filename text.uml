@@ -1,0 +1,33 @@
+@startuml
+title Tournament Workflow (Liquidpedia as system service)
+
+actor User
+actor Admin
+participant Liquidpedia as LP
+
+== Tournament running ==
+
+loop until tour finish
+    User <- LP : Take page
+
+    Admin -> LP : Make tour
+    Admin -> LP : Update tour
+end
+
+Admin -> LP : Finish tour
+
+== After tournament ==
+
+User <- LP : Take page
+
+Admin -> LP : Make user page
+User <- LP : Take page
+
+Admin -> LP : Update
+Admin -> LP : Make user page
+User <- LP : Take page
+
+Admin -> LP : Update
+Admin -> LP : Add prize
+
+@enduml
