@@ -1,0 +1,58 @@
+@startuml
+actor Editor
+participant "Creating page" as CP
+database DB
+
+Editor -> CP: createPage()
+CP -> DB: isAllowed()
+DB --> CP: Response()
+CP --> Editor: Response()
+
+Editor -> CP: addingStructure()
+CP -> DB: addingStructure()
+DB --> CP: Response()
+CP --> Editor: Response()
+
+Editor -> CP: addingText()
+CP -> DB: addingText()
+DB --> CP: Response()
+CP --> Editor: Response()
+
+Editor -> CP: addingPhoto()
+CP -> DB: addingPhoto()
+DB --> CP: Response()
+CP --> Editor: Response()
+
+Editor -> CP: Finish()
+CP -> DB: Finish()
+DB --> CP: Response()
+CP --> Editor: Response()
+
+@enduml
+
+
+@startuml
+actor User
+participant "Taking Page" as TP
+database DB
+
+User -> TP: TakingPage()
+TP -> DB: GetPage()
+DB --> TP: Response()
+TP --> User: Response()
+
+User -> TP: takingStructure()
+TP -> DB: getStructure()
+DB --> TP: Response()
+TP --> User: Response()
+
+User -> TP: takingText()
+TP -> DB: getText()
+DB --> TP: Response()
+TP --> User: Response()
+
+User -> TP: takingPhoto()
+TP -> DB: getPhoto()
+DB --> TP: Response()
+TP --> User: Response()
+@enduml
