@@ -1,0 +1,43 @@
+@startuml
+|Editor|
+start
+
+:Creating Page;
+:Creating name;
+
+if ("Name OK?") then (yes)
+  --> "Put TEXT/STRUCTURE";
+else (no)
+  --> [back] :Re-enter name;
+endif
+
+|Server|
+:Save DB;
+
+|Editor|
+if ("Add PNG?") then (yes)
+  --> :Put PNG;
+else (no)
+  --> [skip] :Skip image;
+endif
+
+|Server|
+:Save DB;
+
+|Editor|
+if ("Push?") then (yes)
+  --> :Push changes;
+else (no)
+  --> [skip] :Skip push;
+endif
+
+|Server|
+:Save DB;
+
+|Editor|
+if ("Everything Saved?") then (yes)
+  --> stop
+else (no)
+  --> [loop] :Fix errors;
+endif
+@enduml
