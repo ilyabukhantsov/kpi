@@ -1,0 +1,67 @@
+@startuml
+title Tournament Management System - Component Diagram
+
+package "System Boundary" {
+
+  [Client / UI] --> (REST API)
+
+  component "API Gateway" {
+    (REST API)
+  }
+
+  component "Auth Service" {
+    (IAuth)
+  }
+
+  component "Tournament Service" {
+    (ITournamentManagement)
+  }
+
+  component "Team & Player Service" {
+    (ITeamManagement)
+  }
+
+  component "Statistics Service" {
+    (IStatistics)
+  }
+
+  component "Notification Service" {
+    (INotification)
+  }
+
+  component "Data Access Layer" {
+    (IDatabaseAccess)
+  }
+
+  database "Database"
+
+  (REST API) --> (IAuth)
+  (REST API) --> (ITournamentManagement)
+  (REST API) --> (ITeamManagement)
+  (REST API) --> (IStatistics)
+  (REST API) --> (INotification)
+
+  (ITournamentManagement) --> (IDatabaseAccess)
+  (ITeamManagement) --> (IDatabaseAccess)
+  (IStatistics) --> (IDatabaseAccess)
+
+  (IDatabaseAccess) --> Database
+}
+
+component "OAuth Provider" {
+  (OAuth2)
+}
+
+component "Analytics Platform" {
+  (Analytics API)
+}
+
+component "Email / SMS Gateway" {
+  (Messaging API)
+}
+
+(IAuth) --> (OAuth2)
+(IStatistics) --> (Analytics API)
+(INotification) --> (Messaging API)
+
+@enduml
